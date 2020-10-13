@@ -1,0 +1,41 @@
+apply plugin: 'java'
+apply plugin: "application"
+apply plugin: 'pmd'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+
+}
+
+dependencies {
+
+}
+
+wrapper {
+    gradleVersion = 6.6
+}
+
+// TODO: Add ruleSets to pmd
+pmd {
+    consoleOutput = true
+    toolVersion = "6.21.0"
+    rulePriority = 5
+    ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+}
+
+jar {
+    archivesBaseName = "$project.name-all"
+    manifest {
+        attributes 'Implementation-Title': 'JavaMasterclass',
+                'Implementation-Version': project.version,
+                'Created-By': 'Aku',
+                'Main-Class': 'org.project.Main'
+    }
+}
+
+application {
+    mainClass = 'org.project.Main'
+}
